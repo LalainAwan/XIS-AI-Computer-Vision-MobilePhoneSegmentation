@@ -13,10 +13,10 @@ This project implements a complete computer vision pipeline for mobile phone seg
 The objective is to accurately segment a mobile phone from images and estimate its physical dimensions using calibrated imagery.
 
 ---
-#Figure 1: End-to-End Measurement Pipeline
-## Figure 1. End-to-End Measurement Pipeline
 
-![Pipeline Architecture](images/pipeline_architecture.png)
+## Figure 1. End-to-End Measurement Pipeline
+![End-to-End Pipeline](images/end_to_end_dataflow_diagram.drawio.png)
+
 
 # 2. Object Selection
 
