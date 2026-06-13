@@ -1,81 +1,75 @@
-# XIS-AI-Computer-Vision-MobilePhoneSegmentation
-End-to-end computer vision pipeline for camera calibration, mobile phone segmentation, and real-world metric measurement using Mask R-CNN and OpenCV.
-# Mobile Phone Segmentation & Real-World Measurement System
+# Mobile Phone Segmentation and Dimension Measurement
 
 ## Project Overview
 
-This project implements an end-to-end computer vision pipeline for:
+This project implements a complete computer vision pipeline for mobile phone segmentation and dimension estimation using camera calibration and Mask R-CNN.
 
-- Camera calibration using OpenCV
-- Image undistortion using intrinsic camera parameters
-- Mobile phone instance segmentation using Mask R-CNN
-- Pixel-to-millimeter conversion
-- Real-world width and height measurement
-- Accuracy validation against physical measurements
-
-The system is designed to simulate an industrial measurement workflow where calibrated imagery is used for precise dimensional analysis.
-
----
-
-## Features
-
-- Camera intrinsic calibration
-- Lens distortion correction
-- Custom dataset collection and annotation
-- Mobile phone segmentation
-- Automated measurement extraction
-- Real-world metric conversion
-- Error analysis and validation
-
----
-
-## Project Structure
-
-project-root/
-
-├── calibration/
-
-├── dataset/
-
-├── models/
-
-├── inference/
-
-├── measurement/
-
-├── docs/
-
-├── notebooks/
-
-├── README.md
-
----
-
-## Technology Stack
-
-- Python
-- OpenCV
-- Detectron2
-- Mask R-CNN
-- NumPy
-- Matplotlib
-- Google Colab
-
----
-
-## Workflow
+The workflow includes:
 
 1. Camera Calibration
-2. Image Undistortion
-3. Dataset Collection
-4. Dataset Annotation
-5. Model Training
-6. Segmentation Inference
-7. Pixel-to-mm Conversion
-8. Accuracy Evaluation
+2. Dataset Collection
+3. Dataset Annotation
+4. Instance Segmentation using Mask R-CNN
+5. Model Evaluation
+6. Real-World Dimension Measurement
 
----
+## Object
 
-## Author
+* Device: iPhone 12 Mini
 
-XIS AI/Computer Vision Technical Assessment
+## Dataset
+
+* Total Images: 80
+* Training Images: 56
+* Validation Images: 16
+* Testing Images: 8
+* Annotation Format: COCO Segmentation
+
+## Camera Calibration
+
+Checkerboard Calibration Pattern:
+
+* 11 squares × 7 squares
+* Square Size: 20 mm
+
+Calibration Results:
+
+* Successful Detections: 25/25
+* Mean Reprojection Error: 0.2377
+
+## Model
+
+Architecture:
+
+* Mask R-CNN
+* ResNet50-FPN Backbone
+
+Training Parameters:
+
+* Optimizer: Adam
+* Learning Rate: 0.0001
+* Epochs: 10
+* Batch Size: 2
+
+Training Results:
+
+* Final Train Loss: 0.0720
+* Final Validation Loss: 0.1972
+
+## Ground Truth Measurements
+
+* Height: 131 mm
+* Width: 64 mm
+* Thickness: 7 mm
+
+## Repository Structure
+
+* notebooks/
+* calibration/
+* dataset/
+* docs/
+* models/
+* outputs/
+* reports/
+
+
