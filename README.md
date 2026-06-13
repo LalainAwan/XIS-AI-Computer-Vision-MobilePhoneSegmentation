@@ -62,14 +62,4 @@ Training Results:
 * Width: 64 mm
 * Thickness: 7 mm
 
-## Repository Structure
-
-* notebooks/
-* calibration/
-* dataset/
-* docs/
-* models/
-* outputs/
-* reports/
-
 
