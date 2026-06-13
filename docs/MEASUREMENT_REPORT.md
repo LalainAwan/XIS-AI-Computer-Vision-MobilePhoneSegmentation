@@ -116,6 +116,9 @@ The trained Mask R-CNN model was evaluated on the held-out test dataset.
 
 These results indicate excellent segmentation quality and strong agreement between predicted masks and ground-truth annotations.
 
+### Notes on Evaluation
+
+Due to the limited measurement evaluation setup, the project demonstrates the complete pixel-to-millimetre conversion workflow but does not include a large-scale measurement validation study. Future work should evaluate multiple images and viewing conditions to compute Mean Absolute Error (MAE) and Mean Percentage Error (MPE).
 ---
 
 ## 8. Error Analysis
