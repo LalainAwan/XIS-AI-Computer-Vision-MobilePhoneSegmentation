@@ -316,7 +316,7 @@ The current implementation has several limitations:
 * Pixel-to-millimeter scaling relies on known object dimensions.
 * Thickness estimation is limited from single-view imagery.
 
-Future work could incorporate multiple object classes and more advanced measurement techniques.
+ Future work should evaluate multiple images and viewing conditions to compute Mean Absolute Error (MAE) and Mean Percentage Error (MPE).
 
 ---
 
