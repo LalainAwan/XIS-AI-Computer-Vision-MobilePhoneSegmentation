@@ -9,7 +9,7 @@ File Size:
 168 MB
 
 Storage Location:
-Google Drive → XIS_AI_Project/models/
+Google Drive → https://drive.google.com/drive/folders/1OjIAFUQeZjR233iw0oz2McTdXdhH92ia?usp=drive_link
 
 Reason not committed:
 The trained model exceeds GitHub's standard file size limits for convenient repository storage.
