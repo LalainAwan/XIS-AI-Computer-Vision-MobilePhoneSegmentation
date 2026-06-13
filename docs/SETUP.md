@@ -2,7 +2,7 @@
 
 ## Clone Repository
 
-git clone <repo_url>
+git clone <https://github.com/LalainAwan/XIS-AI-Computer-Vision-MobilePhoneSegmentation.git>
 
 ## Install Dependencies
 
