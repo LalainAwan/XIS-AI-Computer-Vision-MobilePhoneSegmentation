@@ -238,15 +238,18 @@ These results demonstrate that the model successfully learned the appearance and
 
 # 9. Inference Results
 
-The trained model was tested on unseen images.
+The trained model was tested on previously unseen images from the test dataset.
 
 ## Inference Pipeline
 
-1. Load image.
+1. Load test image.
 2. Run Mask R-CNN inference.
 3. Generate segmentation mask.
-4. Extract bounding box.
-5. Estimate object dimensions.
+4. Convert mask to binary format.
+5. Extract object contour.
+6. Fit a rotated minimum-area bounding rectangle.
+7. Compute object dimensions in pixels.
+8. Convert pixel measurements to millimetres.
 
 ## Detection Confidence
 
@@ -254,17 +257,21 @@ Example prediction confidence:
 
 0.9991
 
-The high confidence score demonstrates strong model certainty when detecting the target object.
+The high confidence score indicates that the model is highly certain when identifying the target object.
 
 ---
 
 # 10. Dimension Estimation
 
-The segmentation mask was used to extract object boundaries from the image.
+Following segmentation, the predicted phone mask was converted into a binary mask and analysed using contour extraction techniques.
 
-A pixel-to-millimeter conversion approach was then applied using the known dimensions of the phone.
+The largest contour corresponding to the mobile phone was extracted using OpenCV.
+
+To obtain dimensions that remain consistent regardless of phone rotation within the image, a rotated minimum-area bounding rectangle was fitted using OpenCV's `cv2.minAreaRect()` function.
 
 ## Ground Truth Dimensions
+
+Physical measurements were obtained using a ruler.
 
 | Dimension | Value  |
 | --------- | ------ |
@@ -275,16 +282,39 @@ A pixel-to-millimeter conversion approach was then applied using the known dimen
 ## Measurement Workflow
 
 1. Segment phone using Mask R-CNN.
-2. Generate object mask.
-3. Compute bounding box dimensions.
-4. Convert pixel measurements to millimeters.
-5. Compare against ground truth measurements.
+2. Generate binary segmentation mask.
+3. Extract object contour.
+4. Fit rotated bounding rectangle.
+5. Obtain long-side and short-side pixel measurements.
+6. Compute pixel-to-millimetre conversion factors.
+7. Estimate real-world object dimensions.
+
+## Pixel-to-MM Conversion
+
+The conversion factor was computed using:
+
+mm/pixel = Physical Dimension (mm) / Pixel Dimension (px)
+
+This conversion enables image-space measurements to be transformed into real-world units.
+
+## Dimension Estimation Results
+
+The segmentation-derived dimensions were converted into millimetres using the computed conversion factors.
+
+| Dimension | Ground Truth | Estimated |
+| --------- | ------------ | --------- |
+| Height    | 131 mm       | 131.0 mm  |
+| Width     | 64 mm        | 64.0 mm   |
 
 ## Discussion
 
-The experiment demonstrates that segmentation masks can be used for object measurement and dimensional analysis.
+The experiment demonstrates a complete dimension-estimation workflow based on segmentation outputs.
 
-Accurate calibration and segmentation are critical for obtaining reliable measurements.
+Using `cv2.minAreaRect()` provides orientation-independent measurements and reduces errors that can occur when the phone is rotated within the image.
+
+The estimated dimensions match the known dimensions because the conversion factors were derived using the measured object dimensions. Therefore, this experiment validates the measurement methodology and pixel-to-millimetre conversion workflow rather than serving as an independent measurement-accuracy benchmark.
+
+Accurate camera calibration and segmentation are essential for obtaining reliable measurements in real-world computer vision applications.
 
 ---
 
@@ -317,7 +347,7 @@ The current implementation has several limitations:
 * Small dataset size.
 * Single object category.
 * Controlled indoor environment.
-* Pixel-to-millimeter scaling relies on known object dimensions.
+* Pixel-to-millimetre conversion was demonstrated using known object dimensions rather than an external reference object or independent scale calibration.
 * Thickness estimation is limited from single-view imagery.
 
  Future work should evaluate multiple images and viewing conditions to compute Mean Absolute Error (MAE) and Mean Percentage Error (MPE).
